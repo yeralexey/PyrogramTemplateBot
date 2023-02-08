@@ -94,6 +94,7 @@ so here comes recipe for those, who didn't know how to, and a crib for myself.
 - to initiate auto update code on server the sequence is (Ubuntu 20.04 tested):
   * `mkdir <YOUR_PROJECT_NAME>`
   * `cd <YOUR_PROJECT_NAME>`
+  * `python3 -m venv venv`
   * `mkdir .git`
   * `cd .git`
   * `git init --bare`
