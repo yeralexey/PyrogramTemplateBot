@@ -105,6 +105,7 @@ so here comes recipe for those, who didn't know how to, and a crib for myself.
       --git-dir=/home/<YOUR_PROJECT_NAME>.git checkout -f
 
   * `chmod +x post-receive`
+  * `pip install -r requirements.txt` - after project is pushed
 - sequence to create systemd daemon (Ubuntu 20.04 tested):
   * `nano /etc/systemd/system/<YOUR_PROJECT_NAME>.service`
   * in <YOUR_PROJECT_NAME>.service: 
