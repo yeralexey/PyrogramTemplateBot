@@ -1,6 +1,5 @@
 from .userdata import User
-from pyromod.helpers import ikb
-from utils import plate
+from utils import plate, kb
 
 from utils.logger import init_logger
 logger = init_logger("entities.interview")
@@ -101,10 +100,10 @@ class Interview:
             button_line1 = [choice_button1, choice_button2]
 
         if button_line1:
-            keyboard = ikb([button_line1, button_line2])
+            keyboard = kb([button_line1, button_line2])
             step_flag = False   # if buttons to be used as input, no need to create text await
         else:
-            keyboard = ikb([button_line2])
+            keyboard = kb([button_line2])
             step_flag = True   # if there is only backward-forward buttons - so we await text input
 
         if self.kill_all_buttons is True:

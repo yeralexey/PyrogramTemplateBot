@@ -4,8 +4,8 @@ from main import *
 @Client.on_callback_query(filters.regex(pattern='cancel'))
 async def cancel_button(client, call):
     user = await User.get_user(call.message.chat.id)
-    client.stop_listening((call.message.chat.id, call.message.from_user.id, call.message.id))
     await user.set_attribute("current_step", None)
+    await user.set_attribute("maildata", None)
     text = plate("cancelled", user.chosen_language)
     await Client.edit_message_text(client, chat_id=call.message.chat.id, message_id=call.message.id, text=text)
 
@@ -13,8 +13,8 @@ async def cancel_button(client, call):
 @Client.on_message(filters.private & filters.command(['cancel']))
 async def cancel_command(client, message):
     user = await User.get_user(message.chat.id)
-    client.stop_listening((message.chat.id, message.from_user.id, message.id))
     read_step = await user.get_attribute("current_step")
+    await user.set_attribute("maildata", None)
     if not read_step:
         msg = await message.reply(plate("cancelled_nothing", user.chosen_language))
         await asyncio.sleep(1)
@@ -46,7 +46,7 @@ async def send_mydata(client, message):
 async def choose_language(_, message):
     user = await User.get_user(message.chat.id)
     text = plate("mainmenu_choose_language", user.chosen_language)
-    keyboard = ikb([
+    keyboard = kb([
         [('🇷🇺Русский', '🇷🇺Русский::language-ru_RU')],
         [('🇬🇧English', '🇬🇧English::language-en_US')]
     ])
@@ -63,7 +63,6 @@ async def set_language(client, call):
 
 @Client.on_callback_query(filters.regex(pattern='send'))
 async def send_google(client, call):
-    client.stop_listening((call.message.chat.id, call.message.from_user.id, call.message.id))
     if gw is None:
         await Client.delete_messages(client, call.message.chat.id, [call.message.id])
         return

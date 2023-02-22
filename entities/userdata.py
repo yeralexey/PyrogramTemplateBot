@@ -86,7 +86,10 @@ class User:
             if current_step == attr:
                 data += f"{tag_current_begin}{plate(f'userdata_{attr}', self.chosen_language)}:{tag_current_end} "
             else:
-                data += f"{tag_usual}{plate(f'userdata_{attr}', self.chosen_language)}:{tag_usual} "
+                if attr == "maildata":
+                    data += ""
+                else:
+                    data += f"{tag_usual}{plate(f'userdata_{attr}', self.chosen_language)}:{tag_usual} "
             data += f'{"no data" if value is None else value}\n'
         return data
 

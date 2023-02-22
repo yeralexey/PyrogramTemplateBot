@@ -22,7 +22,6 @@ pyasn1-modules==0.2.8
 pycparser==2.21
 pyparsing==3.0.9
 Pyrogram==2.0.97
-pyromod==2.0.0
 PySocks==1.7.1
 requests==2.28.2
 rsa==4.9

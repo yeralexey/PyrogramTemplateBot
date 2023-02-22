@@ -20,7 +20,6 @@ Not sure, that everything is well-structured and easy to get, I am working on it
 
 - Pyrogram     https://github.com/pyrogram/pyrogram            , as main library;
 - Plate        https://github.com/delivrance/plate             , for language switch;
-- Pyromod      https://github.com/usernein/pyromod             , for dialogue mastering;
 - Sqlitedict   https://github.com/RaRe-Technologies/sqlitedict , for sqlite managing;
 - Cryptography https://github.com/pyca/cryptography            , encrypt secrets;
 
