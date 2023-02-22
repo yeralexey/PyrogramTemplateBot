@@ -160,12 +160,11 @@ async def continue_mailing_(client, message):
         await Client.send_message(client, config.admins[0], plate("admin_send_admin_fail", user.chosen_language))
 
 
-@Client.on_message(filters.private)
+@Client.on_message(filters.user(config.admins) & filters.private)
 async def on_admins_message(client, message):
     user = await User.get_user(message.chat.id)
     read_step = await user.get_attribute("current_step")
     if not read_step or "adminjob" not in read_step:
-        await user.set_attribute("current_step", None)
         message.continue_propagation()
         return
     if read_step == "adminjob_restore_db_await_file":
